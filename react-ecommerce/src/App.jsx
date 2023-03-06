@@ -1,35 +1,23 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
 import "./App.css";
-import data from "./data";
+import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
+import Home from "./Views/Home";
+import ProductView from "./Views/ProductView";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="App">
-      <h1>Featured Products</h1>
-      <div className="products">
-        {data.products.map((product) => (
-          <div className="product" key={product.slug}>
-            <a href={`/product/${product.slug}`}>
-              <img
-                className="img-product"
-                src={product.image}
-                alt={product.name}
-              />
-            </a>
-            <div className="product-info">
-              <a href={`/product/${product.slug}`}>
-                <p>{product.name}</p>
-              </a>
-              <p><strong>${product.price}</strong></p>
-              <button>Add to cart</button>
-            </div>
-          </div>
-        ))}
+    <BrowserRouter>
+      <div className="App">
+        <header>
+          <Link to="/">ECommerce Test Website</Link>
+        </header>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:slug" element={<ProductView />} />
+          </Routes>
+        </main>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
