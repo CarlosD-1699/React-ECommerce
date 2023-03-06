@@ -2,7 +2,7 @@ const data = {
     products:[
         {
             name: 'Nike Slim Shirt',
-            slug: 'nike-slim-shirt',
+            slug: 'nike-slim-shirt1',
             category: 'Shirts',
             image: '/images/p2.png',
             price: 120,
@@ -14,7 +14,7 @@ const data = {
         },
         {
             name: 'Nike Slim Shirt',
-            slug: 'nike-slim-shirt',
+            slug: 'nike-slim-shirt2',
             category: 'Shirts',
             image: '/images/p1.jpg',
             price: 120,
@@ -26,7 +26,7 @@ const data = {
         },
         {
             name: 'Nike Slim Shirt',
-            slug: 'nike-slim-shirt',
+            slug: 'nike-slim-shirt3',
             category: 'Shirts',
             image: '/images/p2.png',
             price: 120,
