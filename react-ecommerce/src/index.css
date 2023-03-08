@@ -23,6 +23,15 @@ main{
   justify-content: center;
 }
 
+.btn-primary{
+  background-color: #f0c040;
+  color: #000000;
+}
+
+a {
+  text-decoration: none;
+}
+
 .rating span{
   color: #ffc000;
 }
