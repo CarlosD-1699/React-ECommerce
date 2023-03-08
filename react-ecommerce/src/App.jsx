@@ -2,20 +2,34 @@ import "./App.css";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import Home from "./Views/Home";
 import ProductView from "./Views/ProductView";
+import Navbar from "react-bootstrap/Navbar";
+import Container from "react-bootstrap/Container";
+import { LinkContainer } from "react-router-bootstrap";
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <div className="d-flex flex-column site-container">
         <header>
-          <Link to="/">ECommerce Test Website</Link>
+          <Navbar bg="dark" variant="dark">
+            <Container>
+              <LinkContainer to="/">
+                <Navbar.Brand>ECommerce Test Website</Navbar.Brand>
+              </LinkContainer>
+            </Container>
+          </Navbar>
         </header>
         <main>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/product/:slug" element={<ProductView />} />
-          </Routes>
+          <Container>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/product/:slug" element={<ProductView />} />
+            </Routes>
+          </Container>
         </main>
+        <footer>
+          <div className="text-center">All rights reserved</div>
+        </footer>
       </div>
     </BrowserRouter>
   );
