@@ -1,0 +1,23 @@
+.product {
+  border: 1px #404040 solid;
+  margin: 1rem;
+}
+
+.product img {
+  width: 100%;
+  max-width: 400px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.product-info {
+  text-decoration: none;
+  padding: 1rem;
+}
+
+.btn-primary {
+  background-color: #f0c040;
+  color: #000000;
+}

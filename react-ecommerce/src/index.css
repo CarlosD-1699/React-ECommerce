@@ -23,34 +23,6 @@ main{
   justify-content: center;
 }
 
-.btn-primary{
-  background-color: #f0c040;
-  color: #000000;
-}
-
-a {
-  text-decoration: none;
-}
-
-.rating span{
-  color: #ffc000;
-}
-
-.product{
-  border: 1px #404040 solid;
-  margin: 1rem;
-}
-
-.product img{
-  width: 100%;
-  max-width: 400px;
-}
-
-.product-info{
-  text-decoration: none;
-  padding: 1rem;
-}
-
 body {
   margin: 0;
   display: flex;
@@ -58,4 +30,8 @@ body {
   justify-content: center;
   min-width: 320px;
   min-height: 100vh;
+}
+
+.img-large{
+  max-width: 100%;
 }
