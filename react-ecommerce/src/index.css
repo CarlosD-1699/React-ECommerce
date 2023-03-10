@@ -9,24 +9,10 @@
 
 }
 
-main{
-  flex: 1;
-}
-
-.products{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
 body {
   margin: 0;
   place-items: center;
   justify-content: center;
   min-width: 320px;
   min-height: 100vh;
-}
-
-.img-large{
-  max-width: 100%;
 }

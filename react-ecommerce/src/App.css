@@ -12,3 +12,7 @@
   min-width: 1280px;
   min-height: 100vh;
 }
+
+main{
+  flex: 1;
+}

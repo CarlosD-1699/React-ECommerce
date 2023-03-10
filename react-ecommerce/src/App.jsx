@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import Home from "./Views/Home";
-import ProductView from "./Views/ProductView";
+import Home from "./Views/HomeView/Home";
+import ProductView from "./Views/ProductView/ProductView";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import { LinkContainer } from "react-router-bootstrap";

@@ -6,8 +6,9 @@ import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 import Badge from "react-bootstrap/Badge";
 import Card from "react-bootstrap/Card";
-import Rating from "../Components/Rating/Rating";
+import Rating from "../../Components/Rating/Rating";
 import Button from "react-bootstrap/esm/Button";
+import "./ProductView.css";
 
 const reducer = (state, action) => {
   switch (action.type) {
