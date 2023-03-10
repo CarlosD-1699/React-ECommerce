@@ -6,6 +6,8 @@ import Col from "react-bootstrap/Col";
 import { Product } from "../../Components/Product/Product";
 import "./Home.css";
 import { Helmet } from "react-helmet-async";
+import { LoadingBox } from "../../Components/Loading/LoadingBox";
+import MessageBox from "../../Components/MessageBox/MessageBox";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -48,9 +50,9 @@ function Home() {
       <h1>Featured Products</h1>
       <div className="products">
         {loading ? (
-          <div>loading...</div>
+          <LoadingBox />
         ) : error ? (
-          <div>{error}</div>
+          <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <Row>
             {products.map((product) => (
