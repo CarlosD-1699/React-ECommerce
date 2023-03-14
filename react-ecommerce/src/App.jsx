@@ -10,6 +10,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useContext } from "react";
 import { Store } from "./Utils/store";
 import CartView from "./Views/CartView/CartView";
+import SignInView from "./Views/SignIn/SignInView";
 
 function App() {
   const { state } = useContext(Store);
@@ -43,6 +44,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/product/:slug" element={<ProductView />} />
               <Route path="/cart" element={<CartView />} />
+              <Route path="/signin" element={<SignInView />} />
             </Routes>
           </Container>
         </main>
