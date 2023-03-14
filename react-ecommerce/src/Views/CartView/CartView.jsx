@@ -2,7 +2,7 @@ import { useContext } from "react";
 import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
 import { Helmet } from "react-helmet-async";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MessageBox from "../../Components/MessageBox/MessageBox";
 import { Store } from "../../Utils/store";
 import ListGroup from "react-bootstrap/ListGroup";
@@ -12,6 +12,7 @@ import "./CartView.css";
 import axios from "axios";
 
 const CartView = () => {
+  const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
     cart: { cartItems },
@@ -34,6 +35,10 @@ const CartView = () => {
       type: "CART_REMOVE_ITEM",
       payload: item,
     });
+  };
+
+  const checkoutHandler = () => {
+    navigate('/signin?redirect=/shipping');
   };
 
   return (
@@ -116,6 +121,7 @@ const CartView = () => {
                     <Button
                       type="button"
                       variant="primary"
+                      onClick={checkoutHandler}
                       disabled={cartItems.length === 0}
                     >
                       Proceed to Checkout
