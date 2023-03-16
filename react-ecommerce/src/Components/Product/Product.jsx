@@ -5,6 +5,7 @@ import Rating from "../Rating/Rating";
 import "./Product.css";
 import { useContext } from "react";
 import { Store } from "../../Utils/store";
+import axios from "axios";
 
 export const Product = ({ product }) => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
