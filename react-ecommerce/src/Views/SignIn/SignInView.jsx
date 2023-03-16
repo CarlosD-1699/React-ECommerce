@@ -7,6 +7,8 @@ import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Store } from '../../Utils/store';
 import './SignInView.css';
+import { toast } from "react-toastify";
+import { getError } from '../../Utils/utils';
 
 const SignInView = () => {
     const navigate = useNavigate();
@@ -33,7 +35,7 @@ const SignInView = () => {
             localStorage.setItem('userInfo', JSON.stringify(data));
             navigate(redirect || '/'); 
         } catch (error) {
-            alert('Invalid email or password');
+            toast.error(getError(error));
         }
     }
 
