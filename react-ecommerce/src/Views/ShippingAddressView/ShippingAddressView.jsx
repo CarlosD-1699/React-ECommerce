@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/esm/Container";
 import { Helmet } from "react-helmet-async";
@@ -11,6 +11,7 @@ const ShippingAddressView = () => {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
+    userInfo,
     cart: { shippingAddress },
   } = state;
 
@@ -19,6 +20,13 @@ const ShippingAddressView = () => {
   const [city, setCity] = useState(shippingAddress.city || '');
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode || '');
   const [country, setCountry] = useState(shippingAddress.country || '');
+
+  useEffect(() => {
+    if(!userInfo){
+      navigate('/signin?redirect=/shipping')
+    }
+  }, [userInfo, navigate]);
+  
 
   const submitHandler = (e) => {
     e.preventDefault();
