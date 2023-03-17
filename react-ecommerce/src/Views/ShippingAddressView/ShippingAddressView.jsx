@@ -6,6 +6,7 @@ import Form from "react-bootstrap/Form";
 import "./ShippingAddress.css";
 import { Store } from "../../Utils/store";
 import { useNavigate } from "react-router-dom";
+import CheckoutSteps from "../../Components/CheckoutSteps/CheckoutSteps";
 
 const ShippingAddressView = () => {
   const navigate = useNavigate();
@@ -58,6 +59,7 @@ const ShippingAddressView = () => {
       <Helmet>
         <title>Shipping Address</title>
       </Helmet>
+      <CheckoutSteps step1 step2 ></CheckoutSteps>
       <div className="container small-container">
         <h1 className="my-3">Shipping Address</h1>
         <Form onSubmit={submitHandler}>
