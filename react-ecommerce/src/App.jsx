@@ -17,6 +17,7 @@ import SignInView from "./Views/SignIn/SignInView";
 import ShippingAddressView from "./Views/ShippingAddressView/ShippingAddressView";
 import SignUpView from "./Views/SignUp/SignUpView";
 import PaymentMethodVw from "./Views/PaymentMethodView/PaymentMethodVw";
+import PlaceOrderVw from "./Views/PlaceOrderView/PlaceOrderVw";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -84,6 +85,7 @@ function App() {
               <Route path="/signup" element={<SignUpView />} />
               <Route path="/shipping" element={<ShippingAddressView />} />
               <Route path="/payment" element={<PaymentMethodVw />} />
+              <Route path="/placeorder" element={<PlaceOrderVw />} />
             </Routes>
           </Container>
         </main>
