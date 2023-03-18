@@ -8,6 +8,7 @@ import axios from "axios";
 import { Store } from "../../Utils/store";
 import { toast } from "react-toastify";
 import { getError } from "../../Utils/utils";
+import "./SignUpView.css";
 
 const SignUpView = () => {
   const navigate = useNavigate();

@@ -11,11 +11,12 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useContext } from "react";
 import { Store } from "./Utils/store";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'
+import "react-toastify/dist/ReactToastify.css";
 import CartView from "./Views/CartView/CartView";
 import SignInView from "./Views/SignIn/SignInView";
 import ShippingAddressView from "./Views/ShippingAddressView/ShippingAddressView";
 import SignUpView from "./Views/SignUp/SignUpView";
+import PaymentMethodVw from "./Views/PaymentMethodView/PaymentMethodVw";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -23,14 +24,15 @@ function App() {
 
   const signoutHandler = () => {
     ctxDispatch({ type: "USER_SIGNOUT" });
-    localStorage.removeItem('userInfo');
-    localStorage.removeItem('shippingAddress');
-  }
+    localStorage.removeItem("userInfo");
+    localStorage.removeItem("shippingAddress");
+    localStorage.removeItem("paymentMethod");
+  };
 
   return (
     <BrowserRouter>
       <div className="d-flex flex-column site-container">
-        <ToastContainer position="bottom-center" limit={1}/>
+        <ToastContainer position="bottom-center" limit={1} />
         <header>
           <Navbar bg="dark" variant="dark">
             <Container>
@@ -54,14 +56,14 @@ function App() {
                     <LinkContainer to="/orderhistory">
                       <NavDropdown.Item>Order History</NavDropdown.Item>
                     </LinkContainer>
-                    <NavDropdown.Divider/>
-                      <Link
-                        className="dropdown-item"
-                        to="#signout"
-                        onClick={signoutHandler}
-                      >
-                        Sign Out
-                      </Link>
+                    <NavDropdown.Divider />
+                    <Link
+                      className="dropdown-item"
+                      to="#signout"
+                      onClick={signoutHandler}
+                    >
+                      Sign Out
+                    </Link>
                   </NavDropdown>
                 ) : (
                   <Link className="nav-link" to="/signin">
@@ -81,6 +83,7 @@ function App() {
               <Route path="/signin" element={<SignInView />} />
               <Route path="/signup" element={<SignUpView />} />
               <Route path="/shipping" element={<ShippingAddressView />} />
+              <Route path="/payment" element={<PaymentMethodVw />} />
             </Routes>
           </Container>
         </main>
