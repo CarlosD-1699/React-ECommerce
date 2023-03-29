@@ -5,10 +5,8 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   server: {
     proxy: {
-      // string shorthand
-      "/foo": "http://localhost:5000",
       "/api": {
-        target: "https://back-ecommerce-wu5w.onrender.com/",
+        target: "https://back-ecommerce-wu5w.onrender.com/:5000",
         changeOrigin: true,
         secure: false,
       },
