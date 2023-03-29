@@ -6,10 +6,11 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:5000",
+        target: "https://back-ecommerce-wu5w.onrender.com/",
         secure: false,
       },
     },
   },
   plugins: [react()],
+  base: '/React-ECommerce/'
 })
