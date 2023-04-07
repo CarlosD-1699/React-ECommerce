@@ -19,7 +19,15 @@ const reducer = (state, action) => {
     case "FETCH_REQUEST":
       return { ...state, loading: true, error: "" };
     case "FETCH_SUCCESS":
-      return { ...state, loading: false, order: action.payload, error: "" };
+      console.log(action.payload); // agrega este console.log
+      const updatedState = {
+        ...state,
+        loading: false,
+        order: action.payload,
+        error: "",
+      };
+      console.log(updatedState); // Agregado console.log para verificar
+      return updatedState;
     case "FETCH_FAIL":
       return { ...state, loading: false, error: action.payload };
     case "PAY_REQUEST":
@@ -51,6 +59,29 @@ const OrderDetailView = () => {
 
   const { state } = useContext(Store);
   const { userInfo } = state;
+
+  function createOrder(data, actions) {
+    if (!state.order._id) {
+      console.log("No se encontró la orden");
+      return;
+    }
+    return actions.order
+      .create({
+        purchase_units: [
+          {
+            amount: {
+              value: state.order.totalPrice,
+            },
+          },
+        ],
+      })
+      .then((order) => {
+        return {
+          orderID: order.id,
+          amount: state.order.totalPrice,
+        };
+      });
+  }
 
   function onApprove(data, actions) {
     return actions.order.capture().then(async function (details) {
@@ -98,7 +129,7 @@ const OrderDetailView = () => {
         dispatch({ type: "PAY_RESET" });
       }
     }
-  }, [order, userInfo, orderId, navigate, successPay]);
+  }, [order, , userInfo, orderId, navigate, successPay, dispatch]);
 
   return loading ? (
     <LoadingBox></LoadingBox>
@@ -217,7 +248,7 @@ const OrderDetailView = () => {
                           email={userInfo.email}
                           fullName={order.shippingAddress.fullName}
                           shippingAdress={order.shippingAddress.address}
-                          amount={order.totalPrice}
+                          createOrder={createOrder}
                           onApprove={onApprove}
                           onError={onError}
                         />
