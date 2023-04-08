@@ -19,6 +19,7 @@ import SignUpView from "./Views/SignUp/SignUpView";
 import PaymentMethodVw from "./Views/PaymentMethodView/PaymentMethodVw";
 import PlaceOrderVw from "./Views/PlaceOrderView/PlaceOrderVw";
 import OrderDetailView from "./Views/OrderDetail/OrderDetailView";
+import OrderHistoryView from "./Views/OrderDetail/OrderHistoryView";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -88,6 +89,7 @@ function App() {
               <Route path="/payment" element={<PaymentMethodVw />} />
               <Route path="/placeorder" element={<PlaceOrderVw />} />
               <Route path="/order/:id" element={<OrderDetailView />} />
+              <Route path="/orderhistory" element={<OrderHistoryView />} />
             </Routes>
           </Container>
         </main>

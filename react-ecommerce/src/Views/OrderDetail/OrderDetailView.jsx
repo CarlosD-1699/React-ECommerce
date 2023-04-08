@@ -3,6 +3,7 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Col from "react-bootstrap/esm/Col";
 import Row from "react-bootstrap/esm/Row";
+import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { Helmet } from "react-helmet-async";
 import { Store } from "../../Utils/store";
 import { LoadingBox } from "../../Components/Loading/LoadingBox";
@@ -57,29 +58,31 @@ const OrderDetailView = () => {
       loadingPay: false,
     });
 
+  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+
   const { state } = useContext(Store);
   const { userInfo } = state;
 
   function createOrder(data, actions) {
-    if (!state.order._id) {
-      console.log("No se encontró la orden");
-      return;
-    }
+    // if (!state.order._id || order._id === null) {
+    //   console.log("No se encontró la orden");
+    //   return;
+    // }
     return actions.order
       .create({
         purchase_units: [
           {
             amount: {
-              value: state.order.totalPrice,
+              value: order.totalPrice,
             },
           },
         ],
       })
-      .then((order) => {
-        return {
-          orderID: order.id,
-          amount: state.order.totalPrice,
-        };
+      .then((orderID) => {
+         return orderID;//{
+        //   orderID: order.id,
+        //   amount: order.totalPrice,
+        // };
       });
   }
 
@@ -104,7 +107,7 @@ const OrderDetailView = () => {
   }
 
   function onError(err) {
-    //toast.error(getError(err));
+    toast.error(getError(err));
   }
 
   useEffect(() => {
@@ -128,8 +131,20 @@ const OrderDetailView = () => {
       if (successPay) {
         dispatch({ type: "PAY_RESET" });
       }
+    } else {
+      const loadPaypalScript = async () => {
+        const { data: clientId } = await axios.get('/api/keys/paypal', {
+          headers: { authorization: `Bearer ${userInfo.token}` },
+        });
+        paypalDispatch({
+          type: "resetOptions",
+          value: { "client-id": clientId, currency: "USD" },
+        });
+        paypalDispatch({ type: "setLoadingStatus", value: "pending" });
+      };
+      loadPaypalScript();
     }
-  }, [order, , userInfo, orderId, navigate, successPay, dispatch]);
+  }, [order, userInfo, orderId, navigate, successPay, paypalDispatch, dispatch]);
 
   return loading ? (
     <LoadingBox></LoadingBox>
@@ -240,18 +255,36 @@ const OrderDetailView = () => {
                 </ListGroup.Item>
                 {!order.isPaid && (
                   <ListGroup.Item>
-                    {order.paymentMethod === "Stripe" ? (
-                      <Button>En proceso</Button>
+                    {order.paymentMethod === "PayPal" ? (
+                      <div>
+                        {isPending ? (
+                          <LoadingBox />
+                        ) : (
+                          <div>
+                            <PayPalButtons
+                              createOrder={createOrder}
+                              onApprove={onApprove}
+                              onError={onError}
+                            ></PayPalButtons>
+                          </div>
+                        )}
+                      </div>
                     ) : (
                       <div>
-                        <PayuCheckout
-                          email={userInfo.email}
-                          fullName={order.shippingAddress.fullName}
-                          shippingAdress={order.shippingAddress.address}
-                          createOrder={createOrder}
-                          onApprove={onApprove}
-                          onError={onError}
-                        />
+                        {order.paymentMethod === "Stripe" ? (
+                          <Button>En proceso</Button>
+                        ) : (
+                          <div>
+                            <PayuCheckout
+                              email={userInfo.email}
+                              fullName={order.shippingAddress.fullName}
+                              shippingAdress={order.shippingAddress.address}
+                              createOrder={createOrder}
+                              onApprove={onApprove}
+                              onError={onError}
+                            />
+                          </div>
+                        )}
                       </div>
                     )}
                     {loadingPay && <LoadingBox></LoadingBox>}
