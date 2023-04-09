@@ -25,6 +25,7 @@ import Button from "react-bootstrap/esm/Button";
 import axios from "axios";
 import SearchBox from "./Components/SearchBox/SearchBox";
 import SearchView from "./Views/SearchView/SearchView";
+import ProtectedRoute from "./Components/ProtectedRoutes/ProtectedRoute";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -145,12 +146,33 @@ function App() {
               <Route path="/search" element={<SearchView />} />
               <Route path="/signin" element={<SignInView />} />
               <Route path="/signup" element={<SignUpView />} />
-              <Route path="/profile" element={<ProfileView />} />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute>
+                    <ProfileView />
+                  </ProtectedRoute>
+                }
+              />
               <Route path="/shipping" element={<ShippingAddressView />} />
               <Route path="/payment" element={<PaymentMethodVw />} />
               <Route path="/placeorder" element={<PlaceOrderVw />} />
-              <Route path="/order/:id" element={<OrderDetailView />} />
-              <Route path="/orderhistory" element={<OrderHistoryView />} />
+              <Route
+                path="/order/:id"
+                element={
+                  <ProtectedRoute>
+                    <OrderDetailView />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/orderhistory"
+                element={
+                  <ProtectedRoute>
+                    <OrderHistoryView />
+                  </ProtectedRoute>
+                }
+              />
             </Routes>
           </Container>
         </main>
