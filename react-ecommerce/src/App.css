@@ -5,14 +5,38 @@
   text-align: center;
 }
 
-.site-container{
+.site-container {
   margin: 0;
   padding: 0;
   width: 100%;
   min-width: 1280px;
   min-height: 100vh;
+  transition: 0.4s;
 }
 
-main{
+main {
   flex: 1;
+}
+
+/* sidebar */
+
+.navbar-brand {
+  font-weight: bold;
+}
+
+.side-navbar {
+  width: 240px;
+  height: 100%;
+  position: absolute;
+  left: -300px;
+  background-color: #100901;
+  transition: 0.5s;
+}
+
+.active-cont {
+  margin-left: 240px;
+}
+
+.active-nav {
+  left: 0;
 }
