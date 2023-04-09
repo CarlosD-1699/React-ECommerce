@@ -20,6 +20,7 @@ import PaymentMethodVw from "./Views/PaymentMethodView/PaymentMethodVw";
 import PlaceOrderVw from "./Views/PlaceOrderView/PlaceOrderVw";
 import OrderDetailView from "./Views/OrderDetail/OrderDetailView";
 import OrderHistoryView from "./Views/OrderDetail/OrderHistoryView";
+import ProfileView from "./Views/Profile/ProfileView";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -30,6 +31,7 @@ function App() {
     localStorage.removeItem("userInfo");
     localStorage.removeItem("shippingAddress");
     localStorage.removeItem("paymentMethod");
+    window.location.href = "/signin";
   };
 
   return (
@@ -85,6 +87,7 @@ function App() {
               <Route path="/cart" element={<CartView />} />
               <Route path="/signin" element={<SignInView />} />
               <Route path="/signup" element={<SignUpView />} />
+              <Route path="/profile" element={<ProfileView />} />
               <Route path="/shipping" element={<ShippingAddressView />} />
               <Route path="/payment" element={<PaymentMethodVw />} />
               <Route path="/placeorder" element={<PlaceOrderVw />} />
