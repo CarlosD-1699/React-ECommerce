@@ -26,6 +26,8 @@ import axios from "axios";
 import SearchBox from "./Components/SearchBox/SearchBox";
 import SearchView from "./Views/SearchView/SearchView";
 import ProtectedRoute from "./Components/ProtectedRoutes/ProtectedRoute";
+import AdminRoute from "./Components/ProtectedRoutes/AdminRoute";
+import DashboardScreen from "./Views/Dashboard/DashboardView";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -187,6 +189,15 @@ function App() {
                   <ProtectedRoute>
                     <OrderHistoryView />
                   </ProtectedRoute>
+                }
+              />
+              {/*Admin Routes*/}
+              <Route
+                path="/admin/dashboard"
+                element={
+                  <AdminRoute>
+                    <DashboardScreen />
+                  </AdminRoute>
                 }
               />
             </Routes>
