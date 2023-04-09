@@ -24,6 +24,7 @@ import ProfileView from "./Views/Profile/ProfileView";
 import Button from "react-bootstrap/esm/Button";
 import axios from "axios";
 import SearchBox from "./Components/SearchBox/SearchBox";
+import SearchView from "./Views/SearchView/SearchView";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -141,6 +142,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/product/:slug" element={<ProductView />} />
               <Route path="/cart" element={<CartView />} />
+              <Route path="/search" element={<SearchView />} />
               <Route path="/signin" element={<SignInView />} />
               <Route path="/signup" element={<SignUpView />} />
               <Route path="/profile" element={<ProfileView />} />
