@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { Store } from "../Store";
+import { Store } from "../../Utils/store";
 
 function AdminRoute() {
   const { state } = useContext(Store);
