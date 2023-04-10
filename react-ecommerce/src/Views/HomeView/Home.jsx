@@ -9,6 +9,8 @@ import { Helmet } from "react-helmet-async";
 import { LoadingBox } from "../../Components/Loading/LoadingBox";
 import MessageBox from "../../Components/MessageBox/MessageBox";
 
+require('dotenv').config();
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "FETCH_REQUEST":
