@@ -8,9 +8,6 @@ import "./Home.css";
 import { Helmet } from "react-helmet-async";
 import { LoadingBox } from "../../Components/Loading/LoadingBox";
 import MessageBox from "../../Components/MessageBox/MessageBox";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 const reducer = (state, action) => {
   switch (action.type) {
