@@ -13,5 +13,5 @@ export default defineConfig({
     },
   },
   plugins: [react()],
-  //base: "/React-ECommerce/",
+  base: "/React-ECommerce/",
 });
