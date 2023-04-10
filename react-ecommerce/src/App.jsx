@@ -28,6 +28,8 @@ import SearchView from "./Views/SearchView/SearchView";
 import ProtectedRoute from "./Components/ProtectedRoutes/ProtectedRoute";
 import AdminRoute from "./Components/ProtectedRoutes/AdminRoute";
 import DashboardScreen from "./Views/Dashboard/DashboardView";
+import ProductListView from "./Views/ProductView/ProductListView";
+import ProductEditView from "./Views/ProductView/ProductEditView";
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -200,6 +202,22 @@ function App() {
                   </AdminRoute>
                 }
               />
+              <Route
+                path="/admin/products"
+                element={
+                  <AdminRoute>
+                    <ProductListView />
+                  </AdminRoute>
+                }
+              ></Route>
+              <Route
+                path="/admin/product/:id"
+                element={
+                  <AdminRoute>
+                    <ProductEditView />
+                  </AdminRoute>
+                }
+              ></Route>
             </Routes>
           </Container>
         </main>
