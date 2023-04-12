@@ -19,7 +19,9 @@ const CartView = () => {
   } = state;
 
   const updateCartHandler = async (item, quantity) => {
-    const { data } = await axios.get(`/api/products/${item._id}`);
+    const { data } = await axios.get(
+      `${import.meta.env.VITE_API_URL}/api/products/${item._id}`
+    );
     if (data.countInStock < quantity) {
       window.alert("Sorry. Product is out of stock");
       return;
@@ -38,7 +40,7 @@ const CartView = () => {
   };
 
   const checkoutHandler = () => {
-    navigate('/signin?redirect=/shipping');
+    navigate("/signin?redirect=/shipping");
   };
 
   return (

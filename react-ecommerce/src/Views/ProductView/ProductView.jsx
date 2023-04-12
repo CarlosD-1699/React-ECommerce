@@ -43,7 +43,9 @@ const ProductView = () => {
     const fetchData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
       try {
-        const result = await axios.get(`${process.env.API_URL}/api/products/slug/${slug}`);
+        const result = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/products/slug/${slug}`
+        );
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (error) {
         dispatch({ type: "FETCH_FAIL", payload: getError(error) });
@@ -54,12 +56,14 @@ const ProductView = () => {
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart } = state;
-  const addToCartHandler = async() => {
-    const existItem = cart.cartItems.find( (x) => x._id === product._id);
+  const addToCartHandler = async () => {
+    const existItem = cart.cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(`${process.env.API_URL}/api/products/${product._id}`);
-    if(data.countInStock < quantity){
-      window.alert('Sorry. Product is out of stock');
+    const { data } = await axios.get(
+      `${import.meta.env.VITE_API_URL}/api/products/${product._id}`
+    );
+    if (data.countInStock < quantity) {
+      window.alert("Sorry. Product is out of stock");
       return;
     }
     ctxDispatch({
@@ -67,7 +71,7 @@ const ProductView = () => {
       payload: { ...product, quantity },
     });
 
-    navigate('/cart');
+    navigate("/cart");
   };
 
   return loading ? (

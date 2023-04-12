@@ -79,7 +79,7 @@ const OrderDetailView = () => {
         ],
       })
       .then((orderID) => {
-         return orderID;//{
+        return orderID; //{
         //   orderID: order.id,
         //   amount: order.totalPrice,
         // };
@@ -91,7 +91,7 @@ const OrderDetailView = () => {
       try {
         dispatch({ type: "PAY_REQUEST" });
         const { data } = await axios.put(
-          `/api/orders/${order._id}/pay`,
+          `${import.meta.env.VITE_API_URL}/api/orders/${order._id}/pay`,
           details,
           {
             headers: { authorization: `Bearer ${userInfo.token}` },
@@ -114,9 +114,12 @@ const OrderDetailView = () => {
     const fetchOrder = async () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get(`/api/orders/${orderId}`, {
-          headers: { authorization: `Bearer ${userInfo.token}` },
-        });
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/orders/${orderId}`,
+          {
+            headers: { authorization: `Bearer ${userInfo.token}` },
+          }
+        );
         dispatch({ type: "FETCH_SUCCESS", payload: data });
       } catch (error) {
         dispatch({ type: "FETCH_FAIL", payload: getError(error) });
@@ -133,9 +136,12 @@ const OrderDetailView = () => {
       }
     } else {
       const loadPaypalScript = async () => {
-        const { data: clientId } = await axios.get('/api/keys/paypal', {
-          headers: { authorization: `Bearer ${userInfo.token}` },
-        });
+        const { data: clientId } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/keys/paypal`,
+          {
+            headers: { authorization: `Bearer ${userInfo.token}` },
+          }
+        );
         paypalDispatch({
           type: "resetOptions",
           value: { "client-id": clientId, currency: "USD" },
@@ -144,7 +150,15 @@ const OrderDetailView = () => {
       };
       loadPaypalScript();
     }
-  }, [order, userInfo, orderId, navigate, successPay, paypalDispatch, dispatch]);
+  }, [
+    order,
+    userInfo,
+    orderId,
+    navigate,
+    successPay,
+    paypalDispatch,
+    dispatch,
+  ]);
 
   return loading ? (
     <LoadingBox></LoadingBox>

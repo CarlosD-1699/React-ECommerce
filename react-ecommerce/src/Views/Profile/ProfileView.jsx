@@ -5,7 +5,7 @@ import Button from "react-bootstrap/esm/Button";
 import { getError } from "../../Utils/utils";
 import { toast } from "react-toastify";
 import axios from "axios";
-import Form from 'react-bootstrap/Form';
+import Form from "react-bootstrap/Form";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -37,7 +37,7 @@ function ProfileView() {
     //dispatch({ type: "UPDATE_REQUEST" });
     try {
       const { data } = await axios.put(
-        "api/users/profile",
+        `${import.meta.env.VITE_API_URL}/api/users/profile`,
         {
           name,
           email,

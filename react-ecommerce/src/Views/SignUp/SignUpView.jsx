@@ -32,11 +32,14 @@ const SignUpView = () => {
       return;
     }
     try {
-      const { data } = await axios.post("/api/users/signup", {
-        name,
-        email,
-        password,
-      });
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/users/signup`,
+        {
+          name,
+          email,
+          password,
+        }
+      );
       console.log(data);
       ctxDispatch({ type: "USER_SIGNIN", payload: data });
       localStorage.setItem("userInfo", JSON.stringify(data));

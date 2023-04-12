@@ -68,7 +68,9 @@ export default function ProductEditView() {
     const fetchData = async () => {
       try {
         dispatch({ type: "FETCH_REQUEST" });
-        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/api/products/${productId}`);
+        const { data } = await axios.get(
+          `${import.meta.env.VITE_API_URL}/api/products/${productId}`
+        );
         setName(data.name);
         setSlug(data.slug);
         setPrice(data.price);
@@ -127,12 +129,16 @@ export default function ProductEditView() {
     bodyFormData.append("file", file);
     try {
       dispatch({ type: "UPLOAD_REQUEST" });
-      const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/upload`, bodyFormData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          authorization: `Bearer ${userInfo.token}`,
-        },
-      });
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/upload`,
+        bodyFormData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            authorization: `Bearer ${userInfo.token}`,
+          },
+        }
+      );
       dispatch({ type: "UPLOAD_SUCCESS" });
 
       if (forImages) {

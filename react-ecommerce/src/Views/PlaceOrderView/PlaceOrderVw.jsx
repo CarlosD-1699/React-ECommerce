@@ -51,7 +51,7 @@ export default function PlaceOrderVw() {
     try {
       dispatch({ type: "CREATE_REQUEST" });
       const { data } = await axios.post(
-        "/api/orders",
+        `${import.meta.env.VITE_API_URL}/api/orders`,
         {
           orderItems: cart.cartItems,
           shippingAddress: cart.shippingAddress,
@@ -72,7 +72,6 @@ export default function PlaceOrderVw() {
       dispatch({ type: "CREATE_SUCCESS" });
       localStorage.removeItem("cartItems");
       navigate(`/order/${data.order._id}`);
-
     } catch (error) {
       dispatch({ type: "CREATE_FAIL" });
       toast.error(getError(error));
