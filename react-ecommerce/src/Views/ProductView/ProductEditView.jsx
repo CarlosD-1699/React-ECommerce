@@ -110,7 +110,11 @@ export default function ProductEditView() {
           description,
         },
         {
-          headers: { Authorization: `Bearer ${userInfo.token}` },
+          headers: {
+            Authorization: `Bearer ${userInfo.token}`,
+            "Access-Control-Allow-Methods":
+              "GET, HEAD, POST, PUT, DELETE, OPTIONS",
+          },
         }
       );
       dispatch({
