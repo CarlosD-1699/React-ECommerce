@@ -112,6 +112,9 @@ export default function ProductEditView() {
         {
           headers: {
             Authorization: `Bearer ${userInfo.token}`,
+            "Access-Control-Allow-Origin": "*",
+            Accept: "application/json",
+            "Content-Type": "application/json",
             "Access-Control-Allow-Methods":
               "GET, HEAD, POST, PUT, DELETE, OPTIONS",
           },
